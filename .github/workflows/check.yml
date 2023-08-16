@@ -1,0 +1,25 @@
+name: Check
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const [owner, repo] = ["clearloop", "actions"]
+            const { sha } = context;
+            github.rest.checks.create({
+              owner,
+              repo,
+              name: "Build",
+              head_sha: sha
+            });
