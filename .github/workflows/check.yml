@@ -17,9 +17,11 @@ jobs:
           script: |
             const [owner, repo] = ["clearloop", "actions"]
             const { sha } = context;
-            github.rest.checks.create({
+            const result = await github.rest.checks.create({
               owner,
               repo,
               name: "Build",
               head_sha: sha
             });
+
+            console.log(result);
