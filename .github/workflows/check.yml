@@ -12,12 +12,9 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Get HEAD SHA
-        shell: bash
-        run: HEAD_SHA=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
       - uses: actions/github-script@v6
         env:
-          HEAD_SHA: ${{ env.HEAD_SHA }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         with:
           script: |
             const { HEAD_SHA } = process.env;
