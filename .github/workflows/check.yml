@@ -13,15 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
+        env:
+          SHA: ${{ github.sha }}
         with:
           script: |
+            const { SHA } = process.env;
             const [owner, repo] = ["clearloop", "actions"]
             const { sha } = context;
             const result = await github.rest.checks.create({
               owner,
               repo,
               name: "Build",
-              head_sha: sha
+              head_sha: SHA
             });
 
             console.log(result);
