@@ -19,12 +19,13 @@ jobs:
           script: |
             const { HEAD_SHA } = process.env;
             const [owner, repo] = ["clearloop", "actions"]
-            const { sha } = context;
+
             const result = await github.rest.checks.create({
               owner,
               repo,
               name: "Build",
-              head_sha: HEAD_SHA
+              head_sha: HEAD_SHA,
+              details_url: "https://api.github.com/repos/gear-tech/gear/actions/jobs/15967292456"
             });
 
             console.log(result);
