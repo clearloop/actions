@@ -25,7 +25,7 @@ jobs:
               repo,
               name: "Build",
               head_sha: HEAD_SHA,
-              details_url: "https://api.github.com/repos/gear-tech/gear/actions/jobs/15967292456"
+              details_url: "https://api.github.com/repos/gear-tech/gear/check-runs/15967292456"
             });
 
             console.log(result);
