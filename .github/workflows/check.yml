@@ -24,9 +24,10 @@ jobs:
               owner,
               repo,
               name: "Build",
-              status: "inprogress",
+              status: "in_progress",
               external_id: "42",
               head_sha: HEAD_SHA,
+              conclusion: null,
               details_url: "https://github.com/gear-tech/gear/actions/runs/5887617336/job/15967292456"
             });
 
