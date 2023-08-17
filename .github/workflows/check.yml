@@ -20,7 +20,7 @@ jobs:
             const { HEAD_SHA } = process.env;
             const [owner, repo] = ["clearloop", "actions"]
 
-            const result = await github.rest.checks.create({
+            let { data } = await github.rest.checks.create({
               owner,
               repo,
               name: "Build",
@@ -28,4 +28,15 @@ jobs:
               details_url: "https://github.com/gear-tech/gear/actions/runs/5887617336/job/15967292456"
             });
 
-            console.log(result);
+
+
+            console.log(data);
+
+            let { data } = await github.rest.checks.update({
+              owner,
+              repo,
+              check_run_id: data.id,
+              details_url: "https://github.com/gear-tech/gear/actions/runs/5887617336/job/15967292456"
+            })
+
+            console.log(data);
